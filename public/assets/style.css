@@ -1,0 +1,271 @@
+.logo {
+  margin-left: 10vw;
+  width: 50px;
+
+}
+header {
+  background: linear-gradient(#E5FAF5,#9EF3DC);
+  color: #15A7A9;
+  font-family: 'Playfair Display', serif ;
+  padding-bottom: 20px;
+}
+.navbar-collapse {
+  margin-top: 10px;
+  margin-left: 15vw;
+  
+}
+
+.navbar-toggler {
+  margin-right: 45vw;
+  margin-top: 10px;
+}
+<<<<<<< HEAD
+.connect {
+  position: absolute;
+  top: 25px;
+  right: 5px;
+=======
+.connect a{
+  display: inline;
+>>>>>>> master
+  outline: none;
+  text-decoration: none;
+  font-size: 15px;
+  color: #15A7A9;
+}
+<<<<<<< HEAD
+.noconnect {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  outline: none;
+  text-decoration: none;
+  font-size: 15px;
+  color: #15A7A9;
+=======
+.connect {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+>>>>>>> master
+}
+.navbar {
+  font-size: 20px;
+  color: #15A7A9;
+}
+/**********main**********/
+main {
+  font-family: 'Poppins', sans empattement ;
+  color: #15A7A9;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+h1 {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #347273;
+}
+h2, h3, h4 {
+  color: #347273;
+  padding-bottom: 10px;
+}
+.fichecontact {
+  padding-top: 40px;
+  margin-left: none;
+  text-align: center;
+}
+label {
+  display:block;
+  margin-top: 10px;
+<<<<<<< HEAD
+=======
+  margin-bottom: 10px;
+>>>>>>> master
+}
+.contact {
+  margin-left: 25vw;
+}
+.contact input {
+  width: 30vw;
+}
+#contactmessage {
+  width: 30vw;
+}
+.validcgu {
+  margin-left: 25vw;
+}
+button {
+  background: #96DEF9;
+  border-radius: 20px;
+  border-color: #347273;
+  color: #347273;
+}
+.contactbtn {
+  margin-left: none;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.pageco {
+  display: inline-block;
+<<<<<<< HEAD
+  padding: 10px;
+  border-style: solid;
+  border-color: #15A7A9;
+}
+.pageco-connexion {
+  padding-bottom: 20px;
+}
+.connexion, .inscription {
+  margin: auto;
+=======
+  padding: 20px;
+  border-style: solid;
+  border-color: #15A7A9;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+.pageco input {
+  width: 20vw;
+}
+
+.connexion, .inscription {
+  margin-top: 20px;
+>>>>>>> master
+  padding-top: 20px;
+  text-align: center;
+}
+.connectbtn {
+<<<<<<< HEAD
+  margin-top: 10px;
+=======
+  margin-top: 30px;
+}
+.linkcgu a {
+    outline: none;
+    text-decoration: none;
+    font-size: 15px;
+    color: #15A7A9;
+}
+.linkcgu {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+>>>>>>> master
+}
+.textpostuler {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.presentation {
+  padding-top: 30px;
+  margin-left: 10vw;
+  margin-right: 15vw;
+}
+.actuformation {
+  margin-left: 10vw;
+  margin-right: 15vw;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: #347273;
+  min-height: 100px;
+}
+.actuformation h4 {
+  text-align: center;
+}
+/**********footer**********/
+
+.retour {
+  text-align: right;
+  margin-right: 20px;  
+}
+.retour a{
+  color:  #347273;
+}
+footer {
+  background: linear-gradient(#9EF3DC, #E5FAF5);
+  height: 60px;
+  font-family: 'Playfair Display', serif ;
+}
+.copyright {
+  color: #15A7A9;
+  font-size: 15px;
+  
+}
+.listfooter {
+  text-align: center;
+}
+.listfooter a{
+  display: inline;
+  outline: none;
+  text-decoration: none;
+  font-size: 15px;
+  color: #15A7A9;
+  padding-left: 10px;
+}
+
+/**********mediaquery**********/
+@media screen and (max-width : 1023px) {
+.logolight {
+  display: none;
+}
+.copyright {
+  text-align: center;
+}
+}
+<<<<<<< HEAD
+=======
+@media screen and (max-width : 800px) {
+.navbar {
+  font-size: 15px; 
+}
+}
+>>>>>>> master
+@media screen and (min-width : 1024px) {
+.logo {
+  width: 70px;
+  
+}
+.navbar {
+  font-size: 25px;
+  color: #15A7A9;  
+}
+
+<<<<<<< HEAD
+.connect, .noconnect {
+=======
+.connect a{
+>>>>>>> master
+  font-size: 20px;
+  
+}
+.copyright {
+<<<<<<< HEAD
+  margin-left: 40vw;
+=======
+  text-align: center;
+>>>>>>> master
+}
+.logolight {
+  width: 40px;
+  float: left;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.listfooter {
+  text-align: right;
+  padding-top: 20px;
+  margin-right: 20px;
+}
+footer {
+  height: 80px;
+}
+<<<<<<< HEAD
+.connexion {
+  float: left;
+  margin-left: 10vw;
+=======
+>>>>>>> master
+}
