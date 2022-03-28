@@ -30,7 +30,7 @@ class Formation
     #[ORM\Column(type: 'string', length: 255)]
     private $video;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' =>'CURRENT_TIMESTAMP'])]
     private $created_at;
 
     #[ORM\ManyToOne(targetEntity: Section::class, inversedBy: 'formations')]
@@ -40,9 +40,25 @@ class Formation
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Ressource::class, orphanRemoval: true)]
     private $ressources;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
     public function __construct()
     {
         $this->ressources = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
