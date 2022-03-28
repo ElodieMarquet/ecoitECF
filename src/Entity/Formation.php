@@ -43,6 +43,10 @@ class Formation
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'formations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $NomAuteur;
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -176,6 +180,18 @@ class Formation
                 $ressource->setFormation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNomAuteur(): ?User
+    {
+        return $this->NomAuteur;
+    }
+
+    public function setNomAuteur(?User $NomAuteur): self
+    {
+        $this->NomAuteur = $NomAuteur;
 
         return $this;
     }
