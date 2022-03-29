@@ -13,18 +13,17 @@ class SectionFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $customsection = $this->createCustomsection('HTML et CSS', null, $manager);
-        $customsection = $this->createCustomsection('PHP', null, $manager);
-        $customsection = $this->createCustomsection('Symfony', null, $manager);
+        $customsection = $this->createCustomsection('HTML et CSS', $manager);
+        $customsection = $this->createCustomsection('PHP', $manager);
+        $customsection = $this->createCustomsection('Symfony', $manager);
         
         $manager->flush();
     }
 
-    public function createCustomsection(string $name, Section $parent = null, ObjectManager $manager)
+    public function createCustomsection(string $name, ObjectManager $manager)
     {
         $customsection = new Section();
         $customsection->setName($name);
-        $customsection->setParent($parent);
         $manager->persist($customsection);
 
         $this->addReference('sect-'.$this->counter, $customsection);

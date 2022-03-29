@@ -18,9 +18,7 @@ class Section
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToOne(targetEntity: self::class, cascade: ['persist', 'remove'])]
-    private $parent;
-
+    
     #[ORM\OneToMany(mappedBy: 'section', targetEntity: Formation::class)]
     private $formations;
 
@@ -42,18 +40,6 @@ class Section
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
-    {
-        $this->parent = $parent;
 
         return $this;
     }
