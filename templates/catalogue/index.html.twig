@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue formations{% endblock %}
+
+{% block body %}
+<main>
+    <h1>Nos formations</h1>
+    <div>
+    {% for customsection in section %}
+        <div> 
+        {{ customsection.name}}
+        </div>
+        {% for forma in customsection.formations %}
+            <div class="card">
+                <img class="card-img-top" src={{ forma.image }} alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ forma.name }}</h5>
+                    <p class="card-text">{{ forma.description }}</p>
+                    <a href="#" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+   
+</div>
+    </div>
+</main>
+{% endblock %}
