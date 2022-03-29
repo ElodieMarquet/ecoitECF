@@ -21,7 +21,7 @@ class Formation
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 140)]
     private $description;
 
     #[ORM\Column(type: 'text')]

@@ -21,7 +21,7 @@ class FormationFixtures extends Fixture implements DependentFixtureInterface
             $formation = new Formation();
             $formation->setName($faker->text(15));
             $formation->setImage($faker->image(null, 640, 480));
-            $formation->setDescription($faker->text());
+            $formation->setDescription($faker->text(120));
             $formation->setSlug($this->slugger->slug($formation->getName())->lower());
             $formation->setContenu($faker->paragraph(10));
             $formation->setVideo($faker->image(null, 640, 480));

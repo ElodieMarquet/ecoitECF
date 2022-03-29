@@ -151,8 +151,51 @@ fieldset .pageco {
   border-color: #347273;
   min-height: 100px;
 }
+.container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
 .actuformation h4 {
   text-align: center;
+}
+.article-formation {
+  border-style: solid;
+  border-radius: 20px;
+  border-color: #347273;
+  border-width: 2px;
+  width: 45vw;
+ 
+  margin: 10px;  
+}
+.img-top {
+  text-align: center;
+}
+img {  
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 20vw;
+}
+.titre {
+  text-align: center;
+}
+.button {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.button a {
+  background: #96DEF9;
+  border-radius: 20px;
+  border-color: #347273;
+  color: #347273;
+  border-style: solid;
+  padding: 5px;
+  text-decoration: none;
+  outline: none;
+}
+.namesection {
+  padding-top: 10px;
+  text-decoration: #347273 underline;
 }
 
 /**********footer**********/
@@ -230,5 +273,9 @@ footer {
 }
 footer {
   height: 80px;
+}
+.article-formation {
+  width: 25vw;
+  height: 60vh;
 }
 }
