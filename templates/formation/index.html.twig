@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{forma.name}}{% endblock %}
+
+{% block body %}
+
+<main>
+<h1>{{forma.name}}</h1>
+<video autoplay controls><a href={{forma.video}}></a></video>
+<div>{{forma.contenu}}</div>
+</main>
+
+{% endblock %}
