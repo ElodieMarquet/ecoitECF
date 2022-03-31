@@ -13,6 +13,8 @@ class FormationController extends AbstractController
     #[Route('/{slug}', name: 'app_detail')]
     public function detail(Formation $forma): Response
     {
-        return $this->render('formation/index.html.twig', compact('forma'));
+        $auteur = $forma->getNomAuteur();
+        
+        return $this->render('formation/index.html.twig', compact('forma', 'auteur' ));
     }
 }
