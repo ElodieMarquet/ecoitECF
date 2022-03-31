@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Section;
 use App\Repository\SectionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
