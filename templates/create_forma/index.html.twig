@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Formations {% endblock %}
+
+{% block body %}
+    <h1>Liste des Formations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Contenu</th>
+                <th>Video</th>
+                <th>Created_at</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.name }}</td>
+                <td>{{ formation.image }}</td>
+                <td>{{ formation.description }}</td>
+                <td>{{ formation.contenu }}</td>
+                <td>{{ formation.video }}</td>
+                <td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.slug }}</td>
+                <td>
+                    <a href="{{ path('app_create_forma_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('app_create_forma_edit', {'id': formation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucune formation trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a>
+{% endblock %}

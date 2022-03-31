@@ -39,7 +39,7 @@
         "symfony/string": "6.0.*",
         "symfony/translation": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
-        "symfony/validator": "6.0.*",
+        "symfony/validator": "6.0.*",        
         "symfony/web-link": "6.0.*",
         "symfony/yaml": "6.0.*",
         "twig/extra-bundle": "^2.12|^3.0",
@@ -54,6 +54,7 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^6.0",
         "symfony/stopwatch": "6.0.*",
+        "symfony/var-dumper": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
     },
     "config": {

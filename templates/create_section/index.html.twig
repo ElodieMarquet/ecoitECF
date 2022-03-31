@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Sections{% endblock %}
+
+{% block body %}
+    <h1>Liste des Sections</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CustomsectionOder</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for section in sections %}
+            <tr>
+                <td>{{ section.id }}</td>
+                <td>{{ section.customsectionOder }}</td>
+                <td>{{ section.name }}</td>
+                <td>
+                    <a href="{{ path('app_create_section_show', {'id': section.id}) }}">Afficher</a>
+                    <a href="{{ path('app_create_section_edit', {'id': section.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">aucune section trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_create_section_new') }}">Créer une nouvelle section</a>
+{% endblock %}
