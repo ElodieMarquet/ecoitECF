@@ -3,19 +3,17 @@
 {% block title %}Liste des Formations {% endblock %}
 
 {% block body %}
+<main>
     <h1>Liste des Formations</h1>
 
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr class="d-flex">
                 <th class="col-1">Id</th>
-                <th class="col-1">Titre</th>
-                <th class="col-1">Lien Image</th>
-                <th class="col-2">Description courte</th>
-                <th class="col-3">Contenu</th>
-                <th class="col-1">Lien Video</th>
+                <th class="col-2">Titre</th>                
+                <th class="col-5">Description courte</th>                                
                 <th class="col-1">Date de création</th>
-                <th class="col-1">Slug</th>
+                <th class="col-2">Slug</th>
                 <th class="col-1">actions</th>
             </tr>
         </thead>
@@ -23,13 +21,10 @@
         {% for formation in formations %}
             <tr class="d-flex">
                 <td class="col-1">{{ formation.id }}</td>
-                <td class="col-1">{{ formation.name }}</td>
-                <td class="col-1">{{ formation.image }}</td>
-                <td class="col-2">{{ formation.description }}</td>
-                <td class="col-3">{{ formation.contenu }}</td>
-                <td class="col-1">{{ formation.video }}</td>
+                <td class="col-2">{{ formation.name }}</td>                
+                <td class="col-5">{{ formation.description }}</td>                                
                 <td class="col-1">{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td class="col-1">{{ formation.slug }}</td>
+                <td class="col-2">{{ formation.slug }}</td>
                 <td class="col-1">
                     <a href="{{ path('app_create_forma_show', {'id': formation.id}) }}">show</a>
                     <a href="{{ path('app_create_forma_edit', {'id': formation.id}) }}">edit</a>
@@ -44,4 +39,5 @@
     </table>
 
     <a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a>
+</main>
 {% endblock %}
