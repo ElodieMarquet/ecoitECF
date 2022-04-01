@@ -5,10 +5,13 @@ namespace App\Controller;
 use App\Entity\Formation;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
+use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 #[Route('/create/forma')]
 class CreateFormaController extends AbstractController
@@ -31,6 +34,58 @@ class CreateFormaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $formation->setNomAuteur($this->getUser());
             $formationRepository->add($formation);
+            $imagefile = $form['image']->getData();
+            $videofile = $form['video']->getData();
+
+                if ($imagefile) {
+
+                    /** @var UploadedFile $uploadedFile */
+                    $destination = $this->getParameter('kernel.project_dir').'/public/upload/images';
+                    $originalFilename = pathinfo ($imagefile->getClientOriginalName(), PATHINFO_FILENAME);                    
+                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$imagefile->guessExtension();
+                    $uploadedFile->move(
+                        $destination,
+                        $newFilename,
+
+                    );
+
+                    try {
+                        $imagefile->move(
+                            $this->getParameter('images_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        //;
+                    }
+
+                    
+                    $formation->setImage($newFilename);
+                }
+
+                if ($videofile) {
+
+                    /** @var UploadedFile $uploadedFile */
+                    $destination = $this->getParameter('kernel.project_dir').'/public/upload/videos';
+                    $originalFilename = pathinfo ($videofile->getClientOriginalName(), PATHINFO_FILENAME);                    
+                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$videofile->guessExtension();
+                    $uploadedFile->move(
+                        $destination,
+                        $newFilename,
+
+                    );
+
+                    try {
+                        $videofile->move(
+                            $this->getParameter('videos_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        //;
+                    }
+
+                    $formation->setVideo($newFilename);
+
+                }
             return $this->redirectToRoute('app_create_forma_index', [], Response::HTTP_SEE_OTHER);
         }
 

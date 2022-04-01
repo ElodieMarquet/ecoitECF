@@ -5,32 +5,32 @@
 {% block body %}
     <h1>Liste des Formations</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Contenu</th>
-                <th>Video</th>
-                <th>Created_at</th>
-                <th>Slug</th>
-                <th>actions</th>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr class="d-flex">
+                <th class="col-1">Id</th>
+                <th class="col-1">Titre</th>
+                <th class="col-1">Lien Image</th>
+                <th class="col-2">Description courte</th>
+                <th class="col-3">Contenu</th>
+                <th class="col-1">Lien Video</th>
+                <th class="col-1">Date de création</th>
+                <th class="col-1">Slug</th>
+                <th class="col-1">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for formation in formations %}
-            <tr>
-                <td>{{ formation.id }}</td>
-                <td>{{ formation.name }}</td>
-                <td>{{ formation.image }}</td>
-                <td>{{ formation.description }}</td>
-                <td>{{ formation.contenu }}</td>
-                <td>{{ formation.video }}</td>
-                <td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ formation.slug }}</td>
-                <td>
+            <tr class="d-flex">
+                <td class="col-1">{{ formation.id }}</td>
+                <td class="col-1">{{ formation.name }}</td>
+                <td class="col-1">{{ formation.image }}</td>
+                <td class="col-2">{{ formation.description }}</td>
+                <td class="col-3">{{ formation.contenu }}</td>
+                <td class="col-1">{{ formation.video }}</td>
+                <td class="col-1">{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="col-1">{{ formation.slug }}</td>
+                <td class="col-1">
                     <a href="{{ path('app_create_forma_show', {'id': formation.id}) }}">show</a>
                     <a href="{{ path('app_create_forma_edit', {'id': formation.id}) }}">edit</a>
                 </td>

@@ -14,7 +14,7 @@ class CatalogueController extends AbstractController
     public function index(SectionRepository $sectionRepository): Response
     {
         return $this->render('catalogue/index.html.twig', [
-            'section' => $sectionRepository->findBy([], ['customsectionOder' => 'asc'])
+            'section' => $sectionRepository->findBy([], ['id' => 'asc'])
         ]);
     }
     
