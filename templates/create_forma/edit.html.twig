@@ -3,11 +3,13 @@
 {% block title %}Modifier Formation{% endblock %}
 
 {% block body %}
+<main>
     <h1>Modifier la Formation</h1>
 
-    {{ include('create_forma/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('create_forma/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
     <a href="{{ path('app_create_forma_index') }}">Revenir à la liste</a>
 
     {{ include('create_forma/_delete_form.html.twig') }}
+</main>
 {% endblock %}

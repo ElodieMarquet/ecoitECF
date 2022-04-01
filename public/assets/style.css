@@ -99,17 +99,7 @@ button .contactbtn {
   border-radius: 20px;
   margin-bottom: 30px;
 }
-fieldset .pageco input {
-  width: 20vw;
-}
-fieldset .pageco {
-  display: inline-block;
-  padding: 20px;
-  border-style: solid;
-  border-color: #15A7A9;
-  border-radius: 20px;
-  margin-bottom: 30px;
-}
+
 .pageco input {
   width: 20vw;
 }
@@ -196,6 +186,17 @@ img {
 .namesection {
   padding-top: 10px;
   text-decoration: #347273 underline;
+}
+.formcreat input {
+  width: 30vw;
+}
+.formcreatmd input {
+  width: 30vw;
+  height: 20vh;
+}
+.formcreatxl textarea {
+  width: 30vw;
+  height: 50vh;
 }
 
 /**********footer**********/

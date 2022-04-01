@@ -3,9 +3,13 @@
 {% block title %}Nouvelle Formation{% endblock %}
 
 {% block body %}
+<main>
     <h1>Créer une nouvelle Formation</h1>
 
     {{ include('create_forma/_form.html.twig') }}
 
-    <a href="{{ path('app_create_forma_index') }}">Revenir à la liste</a>
+    <div class="button">
+        <a href="{{ path('app_create_forma_index') }}">Revenir à la liste</a>
+    </div>
+</main>
 {% endblock %}

@@ -1,4 +1,23 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
+<div class="inscription">  
+    {{ form_start(form) }}
+        <fieldset class="pageco">
+            <div>{{ form_row(form.section) }}
+                <button class="connectbtn">
+                    <a href={{ path('app_create_section_new') }}>Créer une nouvelle section</a>
+                </button>
+            </div>
+            <div class="formcreat">{{ form_row(form.name) }}</div>
+            <div class="formcreat">{{ form_row(form.image) }}</div>
+            <div class="formcreatmd">{{ form_row(form.description) }}</div>
+            <div class="formcreatxl">{{ form_row(form.contenu) }}</div>
+            <div class="formcreat">{{ form_row(form.video) }}</div>
+            <div class="formcreat">{{ form_row(form.slug) }}</div>
+            
+                            
+
+            <button class="connectbtn">{{ button_label|default('Enregistrer') }}</button>
+        </fieldset>
+        
+    {{ form_end(form) }}
+</div>
+

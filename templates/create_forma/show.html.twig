@@ -3,6 +3,7 @@
 {% block title %}Formation{% endblock %}
 
 {% block body %}
+<main>
     <h1>Formation</h1>
 
     <table class="table">
@@ -47,4 +48,5 @@
     <a href="{{ path('app_create_forma_edit', {'id': formation.id}) }}">Modifier</a>
 
     {{ include('create_forma/_delete_form.html.twig') }}
+</main>
 {% endblock %}

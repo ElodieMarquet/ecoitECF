@@ -11,7 +11,7 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div class="connexion">
-        <form class="pageco pageco-connexion" action="{{ path ('app_login') }}" method="post">
+        <form class="pageco" action="{{ path ('app_login') }}" method="post">
             <div>
                 <label for="username">Email:</label>
                 <input type="text" id="username" name="_username" value="{{ last_username }}"/>
