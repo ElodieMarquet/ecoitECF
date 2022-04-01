@@ -1,9 +1,9 @@
 <div class="inscription">  
     {{ form_start(form) }}
-        <fieldset class="pageco">
+        <fdiv class="pageco">
             <div>{{ form_row(form.section) }}
                 <button class="connectbtn">
-                    <a href={{ path('app_create_section_new') }}>Créer une nouvelle section</a>
+                    <a style="text-decoration: none; outline: none; color: #347273;" href={{ path('app_create_section_new') }}>Créer une nouvelle section</a>
                 </button>
             </div>
             <div class="formcreat">{{ form_row(form.name) }}</div>
@@ -16,7 +16,7 @@
                             
 
             <button class="connectbtn">{{ button_label|default('Enregistrer') }}</button>
-        </fieldset>
+        </div>
         
     {{ form_end(form) }}
 </div>

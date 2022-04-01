@@ -23,7 +23,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les CGU',
                     ]),
                 ],
                 'label' => 'J\'accpte les Condition Générales d\'Utilisation'
