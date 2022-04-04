@@ -11,8 +11,7 @@ class SectionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('customsectionOder')
+        $builder            
             ->add('name')
         ;
     }

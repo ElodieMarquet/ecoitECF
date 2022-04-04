@@ -8,8 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>CustomsectionOder</th>
+                <th>Id</th>                
                 <th>Name</th>
                 <th>actions</th>
             </tr>
@@ -17,8 +16,7 @@
         <tbody>
         {% for section in sections %}
             <tr>
-                <td>{{ section.id }}</td>
-                <td>{{ section.customsectionOder }}</td>
+                <td>{{ section.id }}</td>                
                 <td>{{ section.name }}</td>
                 <td>
                     <a href="{{ path('app_create_section_show', {'id': section.id}) }}">Afficher</a>
