@@ -51,6 +51,9 @@ class Formation
     #[ORM\JoinColumn(nullable: false)]
     private $NomAuteur;
 
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Progression::class, orphanRemoval: true)]
+    private $progressions;
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -68,6 +71,7 @@ class Formation
     {
         $this->ressources = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->progressions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +201,36 @@ class Formation
     public function setNomAuteur(?User $NomAuteur): self
     {
         $this->NomAuteur = $NomAuteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progression>
+     */
+    public function getProgressions(): Collection
+    {
+        return $this->progressions;
+    }
+
+    public function addProgression(Progression $progression): self
+    {
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions[] = $progression;
+            $progression->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgression(Progression $progression): self
+    {
+        if ($this->progressions->removeElement($progression)) {
+            // set the owning side to null (unless already changed)
+            if ($progression->getFormation() === $this) {
+                $progression->setFormation(null);
+            }
+        }
 
         return $this;
     }
