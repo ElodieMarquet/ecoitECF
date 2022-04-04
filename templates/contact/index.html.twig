@@ -5,14 +5,14 @@
 {% block body %}
 <main>
     <h1>Contactez-nous</h1>
-    {{ form_start(formulaire) }}
+    {{ form_start(form) }}
         <div class="pageco">
-            {{ form_row(formulaire.nom) }}
-            {{ form_row(formulaire.email) }}
-            {{ form_row(formulaire.message)}}
+            {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
+            {{ form_row(form.email, {'attr':{'class':'form-control'}}) }}
+            {{ form_row(form.message, {'attr':{'class':'form-control'}}) }}
             
             <button type="submit" class="connectbtn">Envoyer</button>
         </div>
-    {{ form_end(formulaire) }}
+    {{ form_end(form) }}
 </main>
 {% endblock %}
