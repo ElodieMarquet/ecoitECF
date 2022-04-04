@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FormationController extends AbstractController
 {
-    #[Route('/{slug}', name: 'app_detail')]
+    #[Route('/formation/{slug}', name: 'app_detail')]
     public function detail(Formation $forma): Response
     {
         $auteur = $forma->getNomAuteur();

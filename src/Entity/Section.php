@@ -15,8 +15,7 @@ class Section
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $customsectionOder;
+    
 
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
@@ -47,18 +46,7 @@ class Section
         return $this;
     }
 
-    public function getCustomsectionOder(): ?int
-    {
-        return $this->customsectionOder;
-    }
-
-    public function setCustomsectionOder(int $customsectionOder): self
-    {
-        $this->customsectionOder = $customsectionOder;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Formation>
      */
@@ -87,5 +75,10 @@ class Section
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

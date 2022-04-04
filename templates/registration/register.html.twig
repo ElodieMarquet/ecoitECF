@@ -9,7 +9,7 @@
             inscrivez vous et  suivez gratuitement nos formations</p>
 
         {{ form_start(registrationForm) }}
-            <fieldset class="pageco pageco-connexion">
+            <div class="pageco">
                 {{ form_row(registrationForm.nom) }}
                 {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.plainPassword, {
@@ -18,7 +18,7 @@
                 {{ form_row(registrationForm.agreeTerms) }}
 
                 <button type="submit" class="connectbtn">Inscription</button>
-            </fieldset>
+            </div>
         {{ form_end(registrationForm) }}
     </div>
     <div class="linkcgu">
