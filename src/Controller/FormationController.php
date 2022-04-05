@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Formation;
 use App\Entity\Progression;
+use App\Repository\FormationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,5 +33,15 @@ class FormationController extends AbstractController
 
         
         return $this->render('formation/index.html.twig');
+    }
+
+    #[Route('/accueil', name: 'app_index', methods: ['GET'])]
+    public function index(FormationRepository $formationRepository): Response
+    {
+        
+        return $this->render('index/index.html.twig', [
+            'formations' => $formationRepository->findLastFormation(), 
+            
+        ]);
     }
 }

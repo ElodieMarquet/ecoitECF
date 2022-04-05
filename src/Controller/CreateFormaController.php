@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -39,15 +40,10 @@ class CreateFormaController extends AbstractController
 
                 if ($imagefile) {
 
-                    /** @var UploadedFile $uploadedFile */
-                    $destination = $this->getParameter('kernel.project_dir').'/public/upload/images';
+                    /** @var UploadedFile $uploadedFile */                    
                     $originalFilename = pathinfo ($imagefile->getClientOriginalName(), PATHINFO_FILENAME);                    
                     $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$imagefile->guessExtension();
-                    $uploadedFile->move(
-                        $destination,
-                        $newFilename,
-
-                    );
+                   
 
                     try {
                         $imagefile->move(
@@ -64,15 +60,10 @@ class CreateFormaController extends AbstractController
 
                 if ($videofile) {
 
-                    /** @var UploadedFile $uploadedFile */
-                    $destination = $this->getParameter('kernel.project_dir').'/public/upload/videos';
+                    /** @var UploadedFile $uploadedFile */                    
                     $originalFilename = pathinfo ($videofile->getClientOriginalName(), PATHINFO_FILENAME);                    
                     $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$videofile->guessExtension();
-                    $uploadedFile->move(
-                        $destination,
-                        $newFilename,
-
-                    );
+                    
 
                     try {
                         $videofile->move(
