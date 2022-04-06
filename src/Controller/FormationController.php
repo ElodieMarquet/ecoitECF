@@ -6,6 +6,7 @@ use App\Entity\Formation;
 use App\Entity\Progression;
 use App\Repository\FormationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FormationController extends AbstractController
 {
+    #[Security("is_granted('ROLE_USER')", statusCode: 404)]
     #[Route('/formation/{slug}', name: 'app_detail')]
     public function detail(Formation $forma): Response
     {
@@ -21,6 +23,7 @@ class FormationController extends AbstractController
         return $this->render('formation/index.html.twig', compact('forma', 'auteur' ));
     }
 
+    #[Security("is_granted('ROLE_USER')", statusCode: 404)]
     #[Route('/formation/{slug}', name: 'app_addprogression', methods:  ['GET', 'POST'])]
     public function addProgression(Formation $forma, EntityManagerInterface $entityManager): Response
     {

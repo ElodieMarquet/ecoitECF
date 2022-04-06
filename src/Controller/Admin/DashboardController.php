@@ -44,6 +44,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard-User', 'fa fa-home');
+        yield MenuItem::linktoRoute('Retour sur EcoIt', 'fas fa-home', 'app_index');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

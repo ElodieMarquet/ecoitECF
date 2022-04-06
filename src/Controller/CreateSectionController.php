@@ -5,14 +5,17 @@ namespace App\Controller;
 use App\Entity\Section;
 use App\Form\SectionType;
 use App\Repository\SectionRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
 #[Route('/create/section')]
 class CreateSectionController extends AbstractController
 {
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/', name: 'app_create_section_index', methods: ['GET'])]
     public function index(SectionRepository $sectionRepository): Response
     {
@@ -21,6 +24,7 @@ class CreateSectionController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/new', name: 'app_create_section_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SectionRepository $sectionRepository): Response
     {
@@ -39,6 +43,7 @@ class CreateSectionController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/{id}', name: 'app_create_section_show', methods: ['GET'])]
     public function show(Section $section): Response
     {
@@ -47,6 +52,7 @@ class CreateSectionController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/{id}/edit', name: 'app_create_section_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Section $section, SectionRepository $sectionRepository): Response
     {
@@ -64,6 +70,7 @@ class CreateSectionController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/{id}', name: 'app_create_section_delete', methods: ['POST'])]
     public function delete(Request $request, Section $section, SectionRepository $sectionRepository): Response
     {

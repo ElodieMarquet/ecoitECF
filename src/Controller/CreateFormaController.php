@@ -6,6 +6,7 @@ use App\Entity\Formation;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
 use Gedmo\Sluggable\Util\Urlizer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+#[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
 #[Route('/create/forma')]
 class CreateFormaController extends AbstractController
 {
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/', name: 'app_create_forma_index', methods: ['GET'])]
     public function index(FormationRepository $formationRepository): Response
     {
@@ -25,6 +27,7 @@ class CreateFormaController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/new', name: 'app_create_forma_new', methods: ['GET', 'POST'])]
     public function new(Request $request, FormationRepository $formationRepository): Response
     {
@@ -86,6 +89,7 @@ class CreateFormaController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/{id}', name: 'app_create_forma_show', methods: ['GET'])]
     public function show(Formation $formation): Response
     {
@@ -111,6 +115,7 @@ class CreateFormaController extends AbstractController
         ]);
     }
 
+    #[Security("is_granted('ROLE_INSTRUCTEUR')", statusCode: 404)]
     #[Route('/{id}', name: 'app_create_forma_delete', methods: ['POST'])]
     public function delete(Request $request, Formation $formation, FormationRepository $formationRepository): Response
     {
