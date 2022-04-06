@@ -166,6 +166,10 @@ img {
   width: 30vw;
   height: 50vh;
 }
+.table {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 /**********footer**********/
 
