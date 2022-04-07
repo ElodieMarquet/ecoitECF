@@ -24,7 +24,7 @@ class FormationController extends AbstractController
     }
 
     #[Security("is_granted('ROLE_USER')", statusCode: 404)]
-    #[Route('/formation/{slug}', name: 'app_addprogression', methods:  ['GET', 'POST'])]
+    #[Route('/formation/progression', name: 'app_addprogression', methods:  ['GET', 'POST'])]
     public function addProgression(Formation $forma, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();

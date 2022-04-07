@@ -28,9 +28,9 @@
                         <h5 class="titre">{{ forma.name }}</h5>
                         <p class="texte">{{ forma.description }}</p>                    
                     </div>
-                    <div class="button">
+                    <button class="connectbtn">
                         <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
-                    </div>
+                    </button>
                 </div>
                 </div>   
         {% endfor %}

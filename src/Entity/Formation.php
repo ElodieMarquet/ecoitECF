@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
-#[UniqueEntity('slug')]
+
 class Formation
 {
     #[ORM\Id]
@@ -44,7 +44,7 @@ class Formation
     private $ressources;
 
     #[ORM\Column(type: 'string', length: 255, unique : true)]
-    #[Gedmo\Slug(fields:'name')]
+    #[Gedmo\Slug(fields: ['name'])]    
     private $slug;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'formations')]
@@ -58,14 +58,7 @@ class Formation
     {
         return $this->slug;
     }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-   
+ 
 
     public function __construct()
     {

@@ -36,50 +36,30 @@ class CreateFormaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $formation->setNomAuteur($this->getUser());
-            $formationRepository->add($formation);
-            $imagefile = $form['image']->getData();
-            $videofile = $form['video']->getData();
+            $formation->setNomAuteur($this->getUser());            
+            $photofile = $form->get('image')->getData();
+            $videofile = $form->get('video')->getData();
 
-                if ($imagefile) {
+                if ($photofile) {
 
-                    /** @var UploadedFile $uploadedFile */                    
-                    $originalFilename = pathinfo ($imagefile->getClientOriginalName(), PATHINFO_FILENAME);                    
-                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$imagefile->guessExtension();
-                   
+                     /** @var UploadedFile $uploadedFile */                    
+                     $originalFilename = pathinfo ($photofile->getClientOriginalName(), PATHINFO_FILENAME);                    
+                     $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$photofile->guessExtension();
+                     
+ 
+                     try {
+                         $photofile->move(
+                             $this->getParameter('images_directory'),
+                             $newFilename
+                         );
+                     } catch (FileException $e) {
+                         //;
+                     }
 
-                    try {
-                        $imagefile->move(
-                            $this->getParameter('images_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        //;
-                    }
-
-                    
                     $formation->setImage($newFilename);
                 }
 
-                if ($videofile) {
-
-                    /** @var UploadedFile $uploadedFile */                    
-                    $originalFilename = pathinfo ($videofile->getClientOriginalName(), PATHINFO_FILENAME);                    
-                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$videofile->guessExtension();
-                    
-
-                    try {
-                        $videofile->move(
-                            $this->getParameter('videos_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        //;
-                    }
-
-                    $formation->setVideo($newFilename);
-
-                }
+                $formationRepository->add($formation);
             return $this->redirectToRoute('app_create_forma_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -105,7 +85,37 @@ class CreateFormaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $formationRepository->add($formation);
+            $formation->setNomAuteur($this->getUser());            
+            $photofile = $form->get('image')->getData();
+            $videofile = $form->get('video')->getData();
+
+                if ($photofile) {
+
+                     /** @var UploadedFile $uploadedFile */                    
+                     $originalFilename = pathinfo ($photofile->getClientOriginalName(), PATHINFO_FILENAME);                    
+                     $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$photofile->guessExtension();
+                     
+ 
+                     try {
+                         $photofile->move(
+                             $this->getParameter('images_directory'),
+                             $newFilename
+                         );
+                     } catch (FileException $e) {
+                         //;
+                     }
+
+                    $formation->setImage($newFilename);
+                }
+                
+                if (str_contains($videofile, 'watch')) {
+
+                    str_replace("watch?v=", "embed/", $videofile); 
+                }
+
+
+                
+                $formationRepository->add($formation);
             return $this->redirectToRoute('app_create_forma_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -19,9 +19,9 @@ class FormationType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('image', FileType::class, [
+            ->add('image', FileType::class, array('data_class' => null), [
                 'label' => 'Image au format jpeg ou png',
-                'mapped' =>false,
+                'mapped' =>true,
                 'required' => true,
                 'constraints' => [
                     new File([
@@ -37,19 +37,9 @@ class FormationType extends AbstractType
             ])
             ->add('description', TextType::class)
             ->add('contenu', TextareaType::class)
-            ->add('video', FileType::class, [
-                'label' => 'Video au format mp4',
-                'mapped' =>false,
-                'required' => true,
-                'constraints' => [
-                    new File([
-                        'mimeTypes' => [
-                            'video/mp4'                            
-                        ],
-                        'mimeTypesMessage' => 'Veuillez télécharcher une video valide'
-                    ])
-                ],
-
+            ->add('video', TextType::class, [
+                'label' => 'lien video',
+                            
             ])            
             ->add('section', EntityType::class, [
                 'class' => Section::class,

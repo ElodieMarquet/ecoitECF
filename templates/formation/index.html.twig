@@ -6,12 +6,13 @@
 
 <main>
   <h1>{{forma.name}}</h1>
-  <video autoplay controls><a href={{forma.video}}></a></video>
+  <embed type="video/webm" src="{{ forma.video }}" width="400" height="300">
+  
   <div>{{forma.contenu}}</div>
   
   
     <div class="card">
-      <img class="card-img-top" src={{forma.getNomAuteur.photo}} alt={{forma.getNomAuteur.nom}}>
+      <img class="card-img-top" src="{{ asset('upload/photoprofil/') }}{{forma.getNomAuteur.photo}} alt={{forma.getNomAuteur.nom}}>
       <div class="card-body">
         <h5 class="card-title">Publié par : {{forma.getNomAuteur.getNom}} {{forma.getNomAuteur.getPrenom}}</h5>
                   
