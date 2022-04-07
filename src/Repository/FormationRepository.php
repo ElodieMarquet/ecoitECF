@@ -58,6 +58,21 @@ class FormationRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function search($mots = null, $section = null){
+        $query = $this->createQueryBuilder('f');
+        if($mots != null){
+            $query->andWhere('MATCH_AGAINST(f.name, f.description) AGAINST
+            (:mots boolean)>0')
+                ->setParameter('mots', $mots);
+        }
+        if($section != null){
+            $query->leftJoin('f.section', 's');
+            $query->andWhere('s.id = :id')
+                ->setParameter('id', $section);
+        }
+        return $query->getQuery()->getResult();
+    }
     
 
     /*

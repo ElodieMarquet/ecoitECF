@@ -5,31 +5,34 @@
 {% block body %}
 
 <main class="container">
+    {{ form(form) }}
     <section class="row">
         <div class="col-12">
             <h1>Nos formations</h1>
-        </div>
-               
-        {% for customsection in section %}
-            <div class="col-12">
-                <h3 class="namesection">- {{ customsection.name}}</h3>
-            </div>
-            {% for forma in customsection.formations %}
-                <div class="col-3 article-formation">
-                    <div class="img-top">            
-                        <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="">
-                    </div>
-                    <div class="corp">
-                        <h5 class="titre">{{ forma.name }}</h5>
-                        <p class="texte">{{ forma.description }}</p>                    
-                    </div>
-                    <button class="connectbtn">
-                        <a href={{ path ('app_detail', {slug: forma.slug})}}>Lire la suite</a>
-                    </button>
+        </div>              
+        
+        {% for forma in formations %}
+            <div class="col-3 article-formation">
+                <div class="img-top">            
+                    <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">
                 </div>
-                </div>   
-            {% endfor %}
+                <div class="corp">
+                    <h5 class="titre">{{ forma.name }}</h5>
+                    <p class="texte">{{ forma.description }}</p>                    
+                </div>
+                <div>
+                    <p>Section : {{ forma.section.name}}</p>
+                <button class="connectbtn">
+                    {% if app.user %}
+                        <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
+                    {% else %}
+                        <a href={{ path ('app_register') }} class="button">Lire la suite</a>
+                    {% endif %}
+                </button>
+            </div>
+            </div>   
         {% endfor %}
+        
     </section>
 </main>
 {% endblock %}

@@ -6,10 +6,18 @@ use App\Repository\FormationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+
+    
+
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
+#[ORM\Table(name: "formation")]
+#[ORM\Index(
+    columns:["name","description"],
+    name:"search_idx",
+    flags:["fulltext"]
+)]
 
 class Formation
 {
