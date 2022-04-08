@@ -48,7 +48,7 @@ class Formation
     #[ORM\JoinColumn(nullable: false)]
     private $section;
 
-    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Ressource::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Ressource::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $ressources;
 
     #[ORM\Column(type: 'string', length: 255, unique : true)]

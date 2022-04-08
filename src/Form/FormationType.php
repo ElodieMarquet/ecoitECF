@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Formation;
+use App\Entity\Ressource;
 use App\Entity\Section;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -48,8 +50,11 @@ class FormationType extends AbstractType
                 'expanded' =>false ,
                 'multiple'=> false,
             ])
-            
-            
+            ->add('ressources', TextType::class, [
+                'mapped' => false,
+                'required' => false
+            ])
+
         ;
     }
     
