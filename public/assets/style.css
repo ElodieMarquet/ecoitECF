@@ -133,6 +133,10 @@ label {
 }
 .img-top {
   text-align: center;
+  
+}
+.card { 
+  width: 20vw;
 }
 img {  
   margin-top: 10px;

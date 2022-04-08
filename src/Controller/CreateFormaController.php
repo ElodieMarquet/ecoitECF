@@ -23,7 +23,7 @@ class CreateFormaController extends AbstractController
     public function index(FormationRepository $formationRepository): Response
     {
         return $this->render('create_forma/index.html.twig', [
-            'formations' => $formationRepository->findAll(),
+            'formations' => $formationRepository->findBy(['NomAuteur' => $this->getuser()], ['id' => 'asc']),
         ]);
     }
 
@@ -57,6 +57,10 @@ class CreateFormaController extends AbstractController
                      }
 
                     $formation->setImage($newFilename);
+                }
+                if (str_contains($videofile, 'watch')) {
+
+                    str_replace("watch?v=", "embed/", $videofile); 
                 }
 
                 $formationRepository->add($formation);
