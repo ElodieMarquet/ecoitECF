@@ -12,7 +12,13 @@
         </div>              
         
         {% for forma in formations %}
-            <div class="col-3 article-formation">
+        {% set classTermine = false %}
+            {% for prog in progressions %}
+                {% if  prog.formation == forma %}
+                    {% set classTermine = true %}
+                {% endif %}
+            {% endfor %}
+            <div class="col-3 article-formation {{ classTermine ? 'class-termine' : ''}}">
                 <div class="img-top">            
                     <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">
                 </div>

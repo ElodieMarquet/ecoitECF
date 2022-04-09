@@ -11,21 +11,27 @@
   <div>{{forma.contenu}}</div>
   
   
-    <div class="card">
-      <img class="card-img-top" src="{{ asset('upload/photoprofil/') }}{{forma.getNomAuteur.photo}}" alt="{{forma.getNomAuteur.nom}}">
-      <div class="card-body">
-        <h5 class="card-title">Publié par : {{forma.getNomAuteur.getNom}} {{forma.getNomAuteur.getPrenom}}</h5>
-        
+  <div class="card">
+    <img class="card-img-top" src="{{ asset('upload/photoprofil/') }}{{forma.getNomAuteur.photo}}" alt="{{forma.getNomAuteur.nom}}">
+    <div class="card-body">
+      <h5 class="card-title">Publié par : {{forma.getNomAuteur.getNom}} {{forma.getNomAuteur.getPrenom}}</h5>
+      
 
-        {% for ressource in forma.getRessources %}
-          <p class="card-text">Ressource(s) complémentaire(s) : <a href="{{ressource.name}}" target="_blank">{{ressource.name}}</a></p>
-        {% endfor %}
-                  
-      </div>
+      {% for ressource in forma.getRessources %}
+        <p class="card-text">Ressource(s) complémentaire(s) : <a href="{{ressource.name}}" target="_blank">{{ressource.name}}</a></p>
+      {% endfor %}
+                
     </div>
+  </div>
+  {{ dump(progressions)}}
+  {% if progressions and progressions.formation %}
+    <h5>Supprimer cette formation de ma progression</h5>
+    <a type="button" href={{ path ('app_removeprogression',{'id':forma.id}) }}>Annulé</a>
     
-  <a type="button" href={{ path ('app_addprogression',{'id':forma.id}) }}>Terminé</a>
-  
+  {% else %}
+    <h5>Ajouter cette formation de ma progression</h5>
+    <button class="connectbtn"><a href={{ path ('app_addprogression',{'id':forma.id}) }}>Terminé</a></button>
+  {% endif %}
 
 </main>
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\SearchFormationType;
 use App\Repository\FormationRepository;
+use App\Repository\ProgressionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class CatalogueController extends AbstractController
 {
     #[Route('/catalogue', name: 'app_catalogue')]
-    public function index(FormationRepository $formationRepository, Request $request): Response
+    public function index(FormationRepository $formationRepository, Request $request, ProgressionRepository $progressionRepository): Response
     {
+        $user = $this->getUser();
         $forma = $formationRepository->findBy([], ['section' => 'asc']);
 
         $form = $this->createForm(SearchFormationType::class);
@@ -30,7 +32,8 @@ class CatalogueController extends AbstractController
         
         return $this->render('catalogue/index.html.twig', [
             'formations' => $forma,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'progressions' => $progressionRepository->findByUser($user)
         ]);
     }
     

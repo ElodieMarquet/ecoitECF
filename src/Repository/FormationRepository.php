@@ -74,7 +74,18 @@ class FormationRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
     
+    public function countByFormation()
+    {
+        $query = $this->createQueryBuilder('f');
+        
 
+        return (int) $query
+            ->select('count(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    
+       
+    }
     /*
     public function findOneBySomeField($value): ?Formation
     {

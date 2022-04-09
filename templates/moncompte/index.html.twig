@@ -25,6 +25,9 @@
       {% elseif is_granted('ROLE_USER') %}
           <h4>Ma progression</h4>
           <div>
+          {{ dump(progressions|length) }}
+          {% set resultprog = progressions|length * 100 / formations %}
+          <p>{{ resultprog}} %</p>
           </div>        
       {% endif %}
   </div>

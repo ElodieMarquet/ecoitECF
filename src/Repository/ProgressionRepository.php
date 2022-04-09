@@ -45,32 +45,42 @@ class ProgressionRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Progression[] Returns an array of Progression objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function countByProgression()
+    {
+        $query = $this->createQueryBuilder('p');
+        
+
+        return (int) $query->select('count(p.user)')->getQuery()->getSingleScalarResult();
+    
+       
+    }
+     /**
+      * @return Progression[] Returns an array of Progression objects
+      */
+    
+    public function findByUser($value)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+            ->andWhere('p.user = :val')
             ->setParameter('val', $value)
             ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
-    public function findOneBySomeField($value): ?Progression
+    
+    public function findOneByUserAndFormation($user, $formation): ?Progression
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.user = :val')
+            ->andWhere('p.formation = :forma')
+            ->setParameter('val', $user)
+            ->setParameter('forma', $formation)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

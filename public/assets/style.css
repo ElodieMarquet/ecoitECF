@@ -87,6 +87,9 @@ label {
   border-radius: 20px;
   margin-bottom: 30px;
 }
+.class-termine {
+  background-color: aqua;
+}
 
 .pageco input {
   width: 20vw;
