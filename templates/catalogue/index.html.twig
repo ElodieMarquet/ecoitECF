@@ -8,12 +8,12 @@
     {{ form(form) }}
     {% if app.user %}
     <div class="filtre">
-        <input type="radio" id="termine" name="filtreforma">
-        <label for="termine">Formations terminé</label>
-        <input type="radio" id="encour" name="filtreforma">
-        <label for="encour">Formations non terminé</label>
-        <input type="radio" id="toute" name="filtreforma">
-        <label for="toute">Toutes les formations</label>
+        <input type="radio" id="finish" name="filterforma">
+        <label for="finish">Formations terminé</label>
+        <input type="radio" id="notFinish" name="filterforma">
+        <label for="notFinish">Formations non terminé</label>
+        <input type="radio" id="all" name="filterforma">
+        <label for="all">Toutes les formations</label>
     </div>
     {% endif %}
     <section class="row">

@@ -1,31 +1,46 @@
-let btnfinish = document.getElementById('termine')
-let btnnotfinish = document.getElementById('encour')
-let btnall = document.getElementById('toute')
-let formaelements = document.getElementsByClassName('class-termine')
-let formelements = document.getElementsByClassName('class-nontermine')
+/*  Event filter for formation in catalogue  */
+
 let elements = document.getElementsByClassName('article-formation')
-function eventfiltretermine () {
+
+function eventFilterFinish () {
+
   for (let element of elements) {    
-    element.style.display = "block"
-      for (let formelement of formelements ){
-        formelement.style.display = "none"
-      }
+    if (element.className.match('class-termine')){
+      element.style.display = 'block'
     }
-}
-termine.addEventListener('click', eventfiltretermine)
-function eventfiltreencour () {
-  for (let element of elements) {    
-    element.style.display = "block"
-    for (let formaelement of formaelements ){
-      formaelement.style.display = "none"
+    else {
+      element.style.display = 'none'
     }
+      
   }
 }
-encour.addEventListener('click', eventfiltreencour)
-function eventfiltretoute () {
+
+function eventFilterNotFinish () {
+
+  for (let element of elements) {    
+    if (element.className.match('class-termine')){
+      element.style.display = 'none'
+    }
+    else {
+      element.style.display = 'block'
+    }
+      
+  }
+}
+
+function eventFilterAll () {
   for (let element of elements) {
     
       element.style.display = "block"
-      }  
+  }  
 }
-toute.addEventListener('click', eventfiltretoute)
+
+if ( window.location.href.match('catalogue')) 
+  {
+    finish.addEventListener('click', eventFilterFinish)
+    notFinish.addEventListener('click', eventFilterNotFinish)
+    all.addEventListener('click', eventFilterAll)
+}
+
+
+
