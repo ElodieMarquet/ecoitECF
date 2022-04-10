@@ -40,7 +40,7 @@ class FormationType extends AbstractType
             ->add('description', TextType::class)
             ->add('contenu', TextareaType::class)
             ->add('video', TextType::class, [
-                'label' => 'lien video',
+                'label' => 'lien video, insérer le lien embed',
                             
             ])            
             ->add('section', EntityType::class, [
@@ -51,6 +51,7 @@ class FormationType extends AbstractType
                 'multiple'=> false,
             ])
             ->add('ressources', TextType::class, [
+                'label'=> 'Ressource complémentaire : Lien URL, pour en insérer plusieur séparez les d\'un ;',
                 'mapped' => false,
                 'required' => false
             ])
