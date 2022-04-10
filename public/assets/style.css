@@ -86,9 +86,13 @@ label {
   border-color: #15A7A9;
   border-radius: 20px;
   margin-bottom: 30px;
+  
 }
 .class-termine {
-  background-color: aqua;
+  background-color: rgb(237, 247, 247);
+}
+.class-nontermine {
+  background-color: white;
 }
 
 .pageco input {

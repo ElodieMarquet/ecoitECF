@@ -6,6 +6,16 @@
 
 <main class="container">
     {{ form(form) }}
+    {% if app.user %}
+    <div class="filtre">
+        <input type="radio" id="termine" name="filtreforma">
+        <label for="termine">Formations terminé</label>
+        <input type="radio" id="encour" name="filtreforma">
+        <label for="encour">Formations non terminé</label>
+        <input type="radio" id="toute" name="filtreforma">
+        <label for="toute">Toutes les formations</label>
+    </div>
+    {% endif %}
     <section class="row">
         <div class="col-12">
             <h1>Nos formations</h1>
@@ -18,7 +28,7 @@
                     {% set classTermine = true %}
                 {% endif %}
             {% endfor %}
-            <div class="col-3 article-formation {{ classTermine ? 'class-termine' : ''}}">
+            <div class="col-3 article-formation {{ classTermine ? 'class-termine' : 'class-nontermine'}}">
                 <div class="img-top">            
                     <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">
                 </div>
