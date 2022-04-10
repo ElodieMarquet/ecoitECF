@@ -41,9 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $photo;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Progression::class)]
+    private $progressions;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
+        $this->progressions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,6 +182,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progression>
+     */
+    public function getProgressions(): Collection
+    {
+        return $this->progressions;
+    }
+
+    public function addProgression(Progression $progression): self
+    {
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions[] = $progression;
+            $progression->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgression(Progression $progression): self
+    {
+        if ($this->progressions->removeElement($progression)) {
+            // set the owning side to null (unless already changed)
+            if ($progression->getUser() === $this) {
+                $progression->setUser(null);
+            }
+        }
 
         return $this;
     }

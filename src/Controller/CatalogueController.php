@@ -2,26 +2,41 @@
 
 namespace App\Controller;
 
-use App\Entity\Section;
-use App\Repository\SectionRepository;
+
+use App\Form\SearchFormationType;
+use App\Repository\FormationRepository;
+use App\Repository\ProgressionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CatalogueController extends AbstractController
 {
     #[Route('/catalogue', name: 'app_catalogue')]
-    public function index(SectionRepository $sectionRepository): Response
+    public function index(FormationRepository $formationRepository, Request $request, ProgressionRepository $progressionRepository): Response
     {
+        $user = $this->getUser();
+        $forma = $formationRepository->findBy([], ['section' => 'asc']);
+
+        $form = $this->createForm(SearchFormationType::class);
+
+        $search = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $forma= $formationRepository->search(
+                $search->get('mots')->getData(),
+                $search->get('section')->getData()
+            );
+        }
+        
         return $this->render('catalogue/index.html.twig', [
-            'section' => $sectionRepository->findBy([], ['id' => 'asc'])
+            'formations' => $forma,
+            'form' => $form->createView(),
+            'progressions' => $progressionRepository->findByUser($user)
         ]);
     }
     
-    public function list(Section $customsection): Response
-    {
-        $formations = $customsection->getFormations();
-
-        return $this->render('catalogue/index.html.twig', compact('customsection', 'formations'));
-    }
+    
+    
 }

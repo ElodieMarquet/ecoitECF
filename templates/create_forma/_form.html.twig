@@ -1,6 +1,6 @@
 <div class="inscription">  
     {{ form_start(form) }}
-        <fdiv class="pageco">
+        <div class="pageco">
             <div>{{ form_row(form.section) }}
                 <button class="connectbtn">
                     <a style="text-decoration: none; outline: none; color: #347273;" href={{ path('app_create_section_new') }}>Créer une nouvelle section</a>
@@ -8,12 +8,10 @@
             </div>
             <div class="formcreat">{{ form_row(form.name) }}</div>
             <div class="formcreat">{{ form_row(form.image) }}</div>
-            <div class="formcreatmd">{{ form_row(form.description) }}</div>
+            <div class="formcreat">{{ form_row(form.description) }}</div>
             <div class="formcreatxl">{{ form_row(form.contenu) }}</div>
-            <div class="formcreat">{{ form_row(form.video) }}</div>
-            <div class="formcreat">{{ form_row(form.slug) }}</div>
-            
-                            
+            <div class="formcreat">{{ form_row(form.video) }}</div>            
+            <div class="formcreat">{{ form_row(form.ressources)}}</div>
 
             <button type="submit" class="connectbtn">{{ button_label|default('Enregistrer') }}</button>
         </div>

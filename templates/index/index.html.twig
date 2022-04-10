@@ -16,9 +16,31 @@
         À terme, EcoIT désire devenir la référence française pour les développeurs soucieux de leur impact 
         digital. Et pourquoi pas délivrer enfin un label officiel pour classer les sites web selon leur 
         empreinte numérique. </p>
-      <div class="actuformation">
-        <h4>Nos dernières formations</h4>
-
+      <div class="container">
+        <section class=row>
+          <div class="col-12 actuformation">
+            <h4>Nos dernières formations</h4>
+          </div>
+        
+          {% for forma in formations %}
+            <div class="col-3 article-formation">
+                <div class="img-top">            
+                    <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="">
+                </div>
+                <div class="corp">
+                    <h5 class="titre">{{ forma.name }}</h5>
+                    <p class="texte">{{ forma.description }}</p>                    
+                </div>
+                <button class="connectbtn">
+                {% if app.user %}
+                    <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
+                {% else %}
+                    <a href={{ path ('app_register') }} class="button">Lire la suite</a>
+                {% endif %}
+                </button>
+            </div>
+          {% endfor %}
+        </section>
       </div>
     </main>
 {% endblock %}

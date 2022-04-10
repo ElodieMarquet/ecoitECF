@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Postuler{% endblock %}
+
+{% block body %}
+<main>
+    <div class="inscription">
+        <h3>Devenir Instructeur !</h3>
+        <p>Vous êtes un(e) développeur(se) web confirmé(e), vous aimez partager votre savoir-faire et 
+          communiquer avec un public avide d’apprendre.<br> 
+          Devenez Instructeur chez ECOIT !<br>
+          ECOIT vous offre une Plateform pour partager votre savoir-faire en construisant vos propres 
+          formations.<br>
+          Pour devenir instructeur il vous suffit de vous inscrire via le formulaire d'inscription 
+          <a href={{ path ('app_register') }}>ici</a> puis de remplir le formulaire ci-dessous. L'administrateur 
+          vous contactera en suite pour convenir d'un rendez-vous en visioconférence. Si à l'issu de 
+          cet entretient votre candidature est validé votre compte instructeur sera ouvert.</p>
+
+        {{ form_start(form) }}
+        <div class="pageco">
+            {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
+            {{ form_row(form.prenom, {'attr':{'class':'form-control'}}) }}
+            {{ form_row(form.email, {'attr':{'class':'form-control'}}) }}
+            {{ form_row(form.message, {'attr':{'class':'form-control'}}) }}
+            
+            <button type="submit" class="connectbtn">Envoyer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div class="linkcgu">
+        <a href={{ path ('app_cgu') }}>Conditions Générales d'utilisation</a>
+    </div>
+</main>
+{% endblock %}

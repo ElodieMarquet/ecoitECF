@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -29,16 +31,40 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $user->setRoles(["ROLE_USER"]);
+            $photofile = $form->get('photo')->getData();
+            
+            // do anything else you need here, like send an email
+
+                if ($photofile) {
+
+                    /** @var UploadedFile $uploadedFile */                    
+                    $originalFilename = pathinfo ($photofile->getClientOriginalName(), PATHINFO_FILENAME);                    
+                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$photofile->guessExtension();
+                    
+
+                    try {
+                        $photofile->move(
+                            $this->getParameter('photos_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        //;
+                    }
+
+                    
+                    $user->setPhoto($newFilename);
+                }
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_index');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+
 }

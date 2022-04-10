@@ -6,11 +6,19 @@ use App\Repository\FormationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+
+    
+
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
-#[UniqueEntity('slug')]
+#[ORM\Table(name: "formation")]
+#[ORM\Index(
+    columns:["name","description"],
+    name:"search_idx",
+    flags:["fulltext"]
+)]
+
 class Formation
 {
     #[ORM\Id]
@@ -40,34 +48,31 @@ class Formation
     #[ORM\JoinColumn(nullable: false)]
     private $section;
 
-    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Ressource::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Ressource::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $ressources;
 
     #[ORM\Column(type: 'string', length: 255, unique : true)]
-    #[Gedmo\Slug(fields:'name')]
+    #[Gedmo\Slug(fields: ['name'])]    
     private $slug;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'formations')]
     #[ORM\JoinColumn(nullable: false)]
     private $NomAuteur;
 
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Progression::class, orphanRemoval: true)]
+    private $progressions;
+
     public function getSlug(): ?string
     {
         return $this->slug;
     }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-   
+ 
 
     public function __construct()
     {
         $this->ressources = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->progressions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +202,36 @@ class Formation
     public function setNomAuteur(?User $NomAuteur): self
     {
         $this->NomAuteur = $NomAuteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progression>
+     */
+    public function getProgressions(): Collection
+    {
+        return $this->progressions;
+    }
+
+    public function addProgression(Progression $progression): self
+    {
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions[] = $progression;
+            $progression->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgression(Progression $progression): self
+    {
+        if ($this->progressions->removeElement($progression)) {
+            // set the owning side to null (unless already changed)
+            if ($progression->getFormation() === $this) {
+                $progression->setFormation(null);
+            }
+        }
 
         return $this;
     }

@@ -1,9 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MoncompteController!{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block body %}
 <main>
+  <h1>Mon Compte</h1>
+  <div class="connexion">
+    <div class="pageco">
+      <h4>Mon profil</h4>
+      <div>Nom : {{app.user.nom}} {{app.user.prenom}}</div>
+      <div>Email : {{app.user.email}}</div>
+      {% if app.user.photo != null %}
+      <div>Photo : <img src="{{ asset('upload/photoprofil/') }}{{ app.user.photo }}"></div>
+      {% endif %}
+    </div>
+    
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
+          <h4>Gestion administrateur</h4>
+          <button class="connectbtn"><a href="{{ path('app_admin') }}">ADMIN</a></button>        
+      {% elseif is_granted('ROLE_INSTRUCTEUR') %}
+          <h4>Mes formations</h4>
+          <button class="connectbtn"><a href="{{ path('app_create_forma_index') }}">Voir mes formations</a></button>
+          <button class="connectbtn"><a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a></button>
+      {% elseif is_granted('ROLE_USER') %}
+          <h4>Ma progression</h4>
+          <div>
+          {{ dump(progressions|length) }}
+          {% set resultprog = progressions|length * 100 / formations %}
+          <p>{{ resultprog}} %</p>
+          </div>        
+      {% endif %}
+  </div>
 </main>
 
 {% endblock %}

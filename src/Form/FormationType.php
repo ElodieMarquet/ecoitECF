@@ -3,10 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Formation;
+use App\Entity\Ressource;
 use App\Entity\Section;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -16,10 +20,10 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('image', FileType::class, [
+            ->add('name', TextType::class)
+            ->add('image', FileType::class, array('data_class' => null), [
                 'label' => 'Image au format jpeg ou png',
-                'mapped' =>false,
+                'mapped' =>true,
                 'required' => true,
                 'constraints' => [
                     new File([
@@ -33,23 +37,12 @@ class FormationType extends AbstractType
                 ],
 
             ])
-            ->add('description')
-            ->add('contenu')
-            ->add('video', FileType::class, [
-                'label' => 'Video au format mp4',
-                'mapped' =>false,
-                'required' => true,
-                'constraints' => [
-                    new File([
-                        'mimeTypes' => [
-                            'video/mp4'                            
-                        ],
-                        'mimeTypesMessage' => 'Veuillez télécharcher une video valide'
-                    ])
-                ],
-
+            ->add('description', TextType::class)
+            ->add('contenu', TextareaType::class)
+            ->add('video', TextType::class, [
+                'label' => 'lien video, insérer le lien embed',
+                            
             ])            
-            ->add('slug')
             ->add('section', EntityType::class, [
                 'class' => Section::class,
                 'allow_extra_fields' => true,
@@ -57,8 +50,12 @@ class FormationType extends AbstractType
                 'expanded' =>false ,
                 'multiple'=> false,
             ])
-            
-            
+            ->add('ressources', TextType::class, [
+                'label'=> 'Ressource complémentaire : Lien URL, pour en insérer plusieur séparez les d\'un ;',
+                'mapped' => false,
+                'required' => false
+            ])
+
         ;
     }
     

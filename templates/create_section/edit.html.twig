@@ -7,7 +7,9 @@
 
     {{ include('create_section/_form.html.twig', {'button_label': 'Update'}) }}
 
+    <button class="connectbtn">
     <a href="{{ path('app_create_section_index') }}">Revenir à la liste</a>
+    </button>
 
     {{ include('create_section/_delete_form.html.twig') }}
 {% endblock %}

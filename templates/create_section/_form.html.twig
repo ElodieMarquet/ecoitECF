@@ -1,4 +1,10 @@
+<div class="connexion">
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+    <div class="pageco">
+            <div class="formcreat">{{ form_row(form.name) }}</div>
+
+            <button type="submit" class="connectbtn">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+    
 {{ form_end(form) }}
+</div>

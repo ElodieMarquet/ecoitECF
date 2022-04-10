@@ -45,23 +45,47 @@ class FormationRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Formation[] Returns an array of Formation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Formation[] Returns an array of Formation objects
+      */
+   
+    public function findLastFormation()
     {
         return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('f.id', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
+    public function search($mots = null, $section = null){
+        $query = $this->createQueryBuilder('f');
+        if($mots != null){
+            $query->andWhere('MATCH_AGAINST(f.name, f.description) AGAINST
+            (:mots boolean)>0')
+                ->setParameter('mots', $mots);
+        }
+        if($section != null){
+            $query->leftJoin('f.section', 's');
+            $query->andWhere('s.id = :id')
+                ->setParameter('id', $section);
+        }
+        return $query->getQuery()->getResult();
+    }
+    
+    public function countByFormation()
+    {
+        $query = $this->createQueryBuilder('f');
+        
+
+        return (int) $query
+            ->select('count(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    
+       
+    }
     /*
     public function findOneBySomeField($value): ?Formation
     {
