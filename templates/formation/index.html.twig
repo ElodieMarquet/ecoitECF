@@ -4,34 +4,41 @@
 
 {% block body %}
 
-<main>
-  <h1>{{forma.name}}</h1>
-  <embed type="video/webm" src="{{ forma.video }}" width="400" height="300">
-  
-  <div>{{forma.contenu}}</div>
-  
-  
-  <div class="card">
-    <img class="card-img-top" src="{{ asset('upload/photoprofil/') }}{{forma.getNomAuteur.photo}}" alt="{{forma.getNomAuteur.nom}}">
-    <div class="card-body">
-      <h5 class="card-title">Publié par : {{forma.getNomAuteur.getNom}} {{forma.getNomAuteur.getPrenom}}</h5>
-      
-
-      {% for ressource in forma.getRessources %}
-        <p class="card-text">Ressource(s) complémentaire(s) : <a href="{{ressource.name}}" target="_blank">{{ressource.name}}</a></p>
-      {% endfor %}
-                
-    </div>
+<main class="container">
+  <section class="row justify-content-center">
+    <h1 class="col-12">{{forma.name}}</h1>
+  </section>
+  <div class="connexion">
+    <embed type="video/webm" src="{{ forma.video }}">
   </div>
-  {{ dump(progressions)}}
-  {% if progressions and progressions.formation %}
-    <h5>Supprimer cette formation de ma progression</h5>
-    <a type="button" href={{ path ('app_removeprogression',{'id':forma.id}) }}>Annulé</a>
-    
-  {% else %}
-    <h5>Ajouter cette formation de ma progression</h5>
-    <button class="connectbtn"><a href={{ path ('app_addprogression',{'id':forma.id}) }}>Terminé</a></button>
-  {% endif %}
+  <section class="row justify-content-center">  
+    <div class="col-md-8 align-self-center">{{forma.contenu}}</div>
+  
+    <div class="card col-4">
+      <div class="imgcard">
+        <img class="card-img-top img-profil"  src="{{ asset('upload/photoprofil/') }}{{forma.getNomAuteur.photo}}" alt="{{forma.getNomAuteur.nom}}">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Publié par : {{forma.getNomAuteur.getNom}} {{forma.getNomAuteur.getPrenom}}</h5>
+        
+
+        {% for ressource in forma.getRessources %}
+          <p class="card-text">Ressource complémentaire : <a href="{{ressource.name}}" target="_blank">{{ressource.name}}</a></p>
+        {% endfor %}
+                  
+      </div>
+    </div>
+  </section>
+  <div class="connexion">  
+    {% if progressions and progressions.formation %}
+      <h5>Supprimer cette formation de ma progression</h5>
+      <button class="connectbtn"><a type="button" href={{ path ('app_removeprogression',{'id':forma.id}) }}>Annulé</a></button>
+      
+    {% else %}
+      <h5>Ajouter cette formation de ma progression</h5>
+      <button class="connectbtn"><a href={{ path ('app_addprogression',{'id':forma.id}) }}>Terminé</a></button>
+    {% endif %}
+  </div>
 
 </main>
 
