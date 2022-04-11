@@ -3,32 +3,50 @@
 {% block title %}Postuler{% endblock %}
 
 {% block body %}
-<main>
-    <div class="inscription">
-        <h3>Devenir Instructeur !</h3>
-        <p>Vous êtes un(e) développeur(se) web confirmé(e), vous aimez partager votre savoir-faire et 
-          communiquer avec un public avide d’apprendre.<br> 
-          Devenez Instructeur chez ECOIT !<br>
-          ECOIT vous offre une Plateform pour partager votre savoir-faire en construisant vos propres 
-          formations.<br>
-          Pour devenir instructeur il vous suffit de vous inscrire via le formulaire d'inscription 
-          <a href={{ path ('app_register') }}>ici</a> puis de remplir le formulaire ci-dessous. L'administrateur 
-          vous contactera en suite pour convenir d'un rendez-vous en visioconférence. Si à l'issu de 
-          cet entretient votre candidature est validé votre compte instructeur sera ouvert.</p>
-
-        {{ form_start(form) }}
-        <div class="pageco">
-            {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
-            {{ form_row(form.prenom, {'attr':{'class':'form-control'}}) }}
-            {{ form_row(form.email, {'attr':{'class':'form-control'}}) }}
-            {{ form_row(form.message, {'attr':{'class':'form-control'}}) }}
-            
-            <button type="submit" class="connectbtn">Envoyer</button>
+<main class="container">
+    <section class="row justify-content-center">
+        <div class="col-12 connexion">
+            <h3>Devenir Instructeur !</h3>
+            <p>Vous êtes un(e) développeur(se) web confirmé(e), vous aimez partager votre savoir-faire et 
+            communiquer avec un public avide d’apprendre.<br> 
+            Devenez Instructeur chez ECOIT !<br>
+            ECOIT vous offre une Plateform pour partager votre savoir-faire en construisant vos propres 
+            formations.<br>
+            Pour devenir instructeur il vous suffit de vous inscrire via le formulaire d'inscription 
+            <a href={{ path ('app_register') }}>ici</a> puis de remplir le formulaire ci-dessous en indiquant vos spécialisations. L'administrateur 
+            vous contactera en suite pour convenir d'un rendez-vous en visioconférence. Si à l'issu de 
+            cet entretient votre candidature est validé votre compte instructeur sera ouvert.</p>
         </div>
-        {{ form_end(form) }}
-    </div>
-    <div class="linkcgu">
+    </section>
+    <section class="row justify-content-center align-items-center">
+        <aside class="col-4">
+            <div class="row justify-content-center">
+              <img class="col-8" src="{{ asset('assets/ressources/teamwork.jpg') }}" alt="">
+              <img class="col-8" src="{{ asset('assets/ressources/business-ga.jpg') }}" alt="">
+            </div>
+        </aside>
+        <div class="col-lg-4">
+            {{ form_start(form) }}
+            <div class="pageco">
+                {{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}
+                {{ form_row(form.prenom, {'attr':{'class':'form-control'}}) }}
+                {{ form_row(form.email, {'attr':{'class':'form-control'}}) }}
+                {{ form_row(form.message, {'attr':{'class':'form-control'}}) }}
+                
+                <button type="submit" class="connectbtn">Envoyer</button>
+            </div>
+            {{ form_end(form) }}        
+        </div>
+        <aside class="col-4">
+            <div class="row justify-content-center">
+              <img class="col-8" src="{{ asset('assets/ressources/business.jpg') }}" alt="">
+              <img class="col-8" src="{{ asset('assets/ressources/handshake.jpg') }}" alt="">
+            </div>
+        </aside>
+    </section>
+    <div class="col-12 linkcgu">
         <a href={{ path ('app_cgu') }}>Conditions Générales d'utilisation</a>
     </div>
+    
 </main>
 {% endblock %}

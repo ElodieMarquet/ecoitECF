@@ -5,22 +5,34 @@
 {% block body %}
 
 <main class="container">
-    {{ form(form) }}
+     <div class="bar">   
+        {{ form_start(form) }}
+            <div class="filtre">{{ form_row(form.section) }}</div>
+            <div class="filtre formcreat">{{ form_row(form.mots) }}</div>
+            <div class="filtre">{{ form_row(form.Rechercher) }}</div>             
+        {{ form_end(form) }}
+    </div>
+    
     {% if app.user %}
-    <div class="filtre">
-        <input type="radio" id="finish" name="filterforma">
-        <label for="finish">Formations terminé</label>
-        <input type="radio" id="notFinish" name="filterforma">
-        <label for="notFinish">Formations non terminé</label>
-        <input type="radio" id="all" name="filterforma">
-        <label for="all">Toutes les formations</label>
+    <div class="bar">
+        <div class="filtre">Formations à afficher :</div>
+        <div class="filtre">        
+            <label for="finish"><input type="radio" id="finish" name="filterforma">   Terminé</label>
+        </div>
+        <div class="filtre">        
+            <label for="notFinish"><input type="radio" id="notFinish" name="filterforma">   Non terminé</label>
+        </div>
+        <div class="filtre">        
+            <label for="all"><input type="radio" id="all" name="filterforma">   Toutes les formations</label>
+        </div>
     </div>
     {% endif %}
-    <section class="row">
+    <section class="row justify-content-center">
         <div class="col-12">
             <h1>Nos formations</h1>
         </div>              
-        
+    </section>
+    <section class="row justify-content-center">    
         {% for forma in formations %}
         {% set classTermine = false %}
             {% for prog in progressions %}
@@ -28,25 +40,26 @@
                     {% set classTermine = true %}
                 {% endif %}
             {% endfor %}
-            <div class="col-3 article-formation {{ classTermine ? 'class-termine' : 'class-nontermine'}}">
-                <div class="img-top">            
-                    <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">
+                <div class="card col-4 article-formation {{ classTermine ? 'class-termine' : ''}}">                              
+                    <img class="card-img-top" src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">                    
+                    <div class="body">
+                        <h5 class="card-title">{{ forma.name }}</h5>
+                        <p class="card-text">{{ forma.description }}</p>                    
+                    </div>
+                    <div class="body-section">
+                        <p>Section : {{ forma.section.name}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="connectbtn">
+                            {% if app.user %}
+                                <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
+                            {% else %}
+                                <a href={{ path ('app_register') }} class="button">Lire la suite</a>
+                            {% endif %}
+                        </button>
+                    </div>
                 </div>
-                <div class="corp">
-                    <h5 class="titre">{{ forma.name }}</h5>
-                    <p class="texte">{{ forma.description }}</p>                    
-                </div>
-                <div>
-                    <p>Section : {{ forma.section.name}}</p>
-                <button class="connectbtn">
-                    {% if app.user %}
-                        <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
-                    {% else %}
-                        <a href={{ path ('app_register') }} class="button">Lire la suite</a>
-                    {% endif %}
-                </button>
-            </div>
-            </div>   
+               
         {% endfor %}
         
     </section>

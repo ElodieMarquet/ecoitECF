@@ -4,42 +4,65 @@
 
 {% block body %}
 <main>
-      <h1 class="accueil">Apprendre à coder facilement et devenir un développeur web eco-responsable !</h1>
-      <p class="presentation">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction massive 
-        a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil des années. 
-        Mais qu’en est-il d’internet ?<br>
-        En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 
-        20 ans, le poids d’une page web a été multiplié par 115 (source : https://www.greenit.fr/)<br> 
-        Face à ce constat, ECOIT un organisme de formation a été fondé en 2017. Notre objectif est d’être 
-        une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception 
-        web de présenter des modules de cours. <br>
-        À terme, EcoIT désire devenir la référence française pour les développeurs soucieux de leur impact 
-        digital. Et pourquoi pas délivrer enfin un label officiel pour classer les sites web selon leur 
-        empreinte numérique. </p>
+      <h1 class="accueil">Apprendre à coder facilement <br>et devenir un développeur web <br>eco-responsable !</h1>
       <div class="container">
-        <section class=row>
+        <section class="row justify-content-center align-items-center">
+          <aside class="col-3">
+            <div class="row justify-content-center">
+              <img class="col-8" src="{{ asset('assets/ressources/woman.jpg') }}" alt="">
+            </div>
+          </aside>
+          <p class="col-lg-5 presentation">C’est un fait, la crise écologique est devenue une urgence majeure. La sixième extinction massive 
+            a déjà commencé et le changement climatique se fait de plus en plus ressentir au fil des années. 
+            Mais qu’en est-il d’internet ?<br>
+            En matière d’émissions de CO2, il pollue 1.5 fois plus que le transport aérien. D’ailleurs, en 
+            20 ans, le poids d’une page web a été multiplié par 115 (source : https://www.greenit.fr/)<br> 
+            Face à ce constat, ECOIT un organisme de formation a été fondé en 2017. Notre objectif est d’être 
+            une plateforme d’éducation permettant à tout instructeur expert en accessibilité et en éco-conception 
+            web de présenter des modules de cours. <br>
+            À terme, EcoIT désire devenir la référence française pour les développeurs soucieux de leur impact 
+            digital. Et pourquoi pas délivrer enfin un label officiel pour classer les sites web selon leur 
+            empreinte numérique. </p>
+          <aside class="col-3">
+            <div class="row justify-content-center align-items-center">
+              <img class="col-8" src="{{ asset('assets/ressources/coffee.jpg') }}" alt="">
+            </div>
+          </aside>
+        </section>
+        <section class="row justify-content-center">
+          <img class="col-8" src="{{ asset('assets/ressources/ecoweb.jpg') }}" alt="">
+        </section>
+      </div>
+      <div class="container">
+        <section class="row">
           <div class="col-12 actuformation">
             <h4>Nos dernières formations</h4>
           </div>
+        </section>
+        <section class="row justify-content-center">
+        {% for forma in formations %}
         
-          {% for forma in formations %}
-            <div class="col-3 article-formation">
-                <div class="img-top">            
-                    <img src="{{ asset('upload/images/') }}{{ forma.image }}" alt="">
+            <div class="card col-4 article-formation">                              
+                    <img class="card-img-top" src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">                    
+                    <div class="body">
+                        <h5 class="card-title">{{ forma.name }}</h5>
+                        <p class="card-text">{{ forma.description }}</p>                    
+                    </div>
+                    <div class="body-section">
+                        <p>Section : {{ forma.section.name}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="connectbtn">
+                            {% if app.user %}
+                                <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
+                            {% else %}
+                                <a href={{ path ('app_register') }} class="button">Lire la suite</a>
+                            {% endif %}
+                        </button>
+                    </div>
                 </div>
-                <div class="corp">
-                    <h5 class="titre">{{ forma.name }}</h5>
-                    <p class="texte">{{ forma.description }}</p>                    
-                </div>
-                <button class="connectbtn">
-                {% if app.user %}
-                    <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
-                {% else %}
-                    <a href={{ path ('app_register') }} class="button">Lire la suite</a>
-                {% endif %}
-                </button>
-            </div>
-          {% endfor %}
+                              
+        {% endfor %}
         </section>
       </div>
     </main>

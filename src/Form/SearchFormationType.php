@@ -17,8 +17,7 @@ class SearchFormationType extends AbstractType
         $builder
             ->add('mots', SearchType::class, [
                 'label' => false,
-                'attr' => [
-                    'class' => 'form-control',
+                'attr' => [                    
                     'placeholder' => 'Rechercher une formation'
                 ],
                 'required' => false
@@ -26,9 +25,7 @@ class SearchFormationType extends AbstractType
             ->add('section', EntityType::class, [
                 'class' => Section::class,
                 'label' => 'Section',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
+                'allow_extra_fields' => true,
                 'required' => false
             ])
             ->add('Rechercher', SubmitType::class)

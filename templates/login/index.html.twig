@@ -3,35 +3,52 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<main>
+<main class="container">
+    
     <div class="connexion">
-        <h4>Se connecter</h4>
+        <h4>Se connecter</h4>        
+        <img src="{{ asset('assets/ressources/mouse.jpg') }}" alt="">
     </div>
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    <div class="connexion">
-        <form class="pageco" action="{{ path ('login') }}" method="post">
-            <div>
-                <label for="username">Email:</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+    
+    <section class="row justify-content-center align-items-center">        
+        <aside class="col-4">
+            <div class="row justify-content-center">
+              <img class="col-8" src="{{ asset('assets/ressources/code.jpg') }}" alt="">              
             </div>
-            <div>
-                <label for="password">Mot de passe:</label>
-                <input type="password" id="password" name="_password"/>
+        </aside>
+        <div class="col-lg-4">
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <div class="connexion">
+                <form class="pageco" action="{{ path ('login') }}" method="post">
+                    <div>
+                        <label for="username">Email:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+                    </div>
+                    <div>
+                        <label for="password">Mot de passe:</label>
+                        <input type="password" id="password" name="_password"/>
+                    </div>
+                    {# If you want to control the URL the user is redirected to on success
+                    <input type="hidden" name="_target_path" value="/account"/> #}
+                    <div>
+                        <button class="connectbtn" type="submit">Connexion</button>
+                    </div>
+                    <input type="hidden" name="_target_path" value={{ path ('app_moncompte') }}/>
+                
+                </form>
             </div>
-            {# If you want to control the URL the user is redirected to on success
-            <input type="hidden" name="_target_path" value="/account"/> #}
-            <div>
-                <button class="connectbtn" type="submit">Connexion</button>
+        </div>
+        <aside class="col-4">
+            <div class="row justify-content-center">
+              <img class="col-8" src="{{ asset('assets/ressources/security.jpg') }}" alt="">              
             </div>
-            <input type="hidden" name="_target_path" value={{ path ('app_moncompte') }}/>
-           
-        </form>
-    </div>
-    <button class="linkcgu">
+        </aside>
+    </section>
+    <div class="linkcgu">
         <a href={{ path ('app_cgu') }}>Conditions Générales d'utilisation</a>
-    </button>
+    </div>
     
 </main>
 {% endblock %}
