@@ -26,7 +26,6 @@ header {
   text-decoration: none;
   font-size: 15px;
   color: #15A7A9;
-  font-weight: bold;
 }
 .connect {
   position: absolute;
@@ -36,7 +35,6 @@ header {
 .navbar {
   font-size: 20px;
   color: #15A7A9;
-  font-weight: bold;
 }
 .navbar-light .navbar-nav .nav-link {
   color: #347273;
@@ -75,6 +73,7 @@ button {
 button a {  
   text-decoration: none;
   outline: none;
+  color: #347273;
 }
 
 button .connectbtn {  
@@ -199,6 +198,16 @@ img {
   margin-left: 10px;
   margin-right: 10px;
 }
+.textlegal {
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+.progress {
+  height: 30px;
+}
+.img-profil {
+  width: 10vw;
+}
 
 /**********footer**********/
 
@@ -217,7 +226,7 @@ footer {
 .copyright {
   color: #15A7A9;
   font-size: 15px;
-  
+  text-align: center;
 }
 .listfooter {
   text-align: center;

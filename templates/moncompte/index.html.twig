@@ -3,34 +3,59 @@
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
-<main>
-  <h1>Mon Compte</h1>
+<main class="container">
   <div class="connexion">
-    <div class="pageco">
-      <h4>Mon profil</h4>
-      <div>Nom : {{app.user.nom}} {{app.user.prenom}}</div>
-      <div>Email : {{app.user.email}}</div>
-      {% if app.user.photo != null %}
-      <div>Photo : <img src="{{ asset('upload/photoprofil/') }}{{ app.user.photo }}"></div>
-      {% endif %}
-    </div>
-    
-      {% if is_granted('ROLE_SUPER_ADMIN') %}
-          <h4>Gestion administrateur</h4>
-          <button class="connectbtn"><a href="{{ path('app_admin') }}">ADMIN</a></button>        
-      {% elseif is_granted('ROLE_INSTRUCTEUR') %}
-          <h4>Mes formations</h4>
-          <button class="connectbtn"><a href="{{ path('app_create_forma_index') }}">Voir mes formations</a></button>
-          <button class="connectbtn"><a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a></button>
-      {% elseif is_granted('ROLE_USER') %}
-          <h4>Ma progression</h4>
-          <div>
-          {{ dump(progressions|length) }}
-          {% set resultprog = progressions|length * 100 / formations %}
-          <p>{{ resultprog}} %</p>
-          </div>        
-      {% endif %}
+    <h2>Mon Compte</h2>
   </div>
+  <section class="row justify-content-center">
+    <aside class="col-4">
+      <div class="row justify-content-center">
+        <img class="col-8" src="{{ asset('assets/ressources/abstract.jpg') }}" alt="">              
+      </div>
+    </aside>
+    <div class="col-lg-4">
+      <div class="row justify-content-center align-items-center">                  
+        <div class="col-12 connexion">
+          <div class="pageco">
+            <h4>Mon profil</h4>
+            <div>Nom : {{app.user.nom}} {{app.user.prenom}}</div>
+            <div>Email : {{app.user.email}}</div>
+            {% if app.user.photo != null %}
+            <div>Photo : <img class="img-profil" src="{{ asset('upload/photoprofil/') }}{{ app.user.photo }}"></div>
+            {% endif %}
+          </div>
+        </div>
+        <img class="col-12" src="{{ asset('assets/ressources/webinar.jpg') }}" alt="">
+        <div class="col-12 connexion">    
+              {% if is_granted('ROLE_SUPER_ADMIN') %}
+                  <h4>Gestion administrateur</h4>
+                  <button class="connectbtn"><a href="{{ path('app_admin') }}">ADMIN</a></button>        
+              {% elseif is_granted('ROLE_INSTRUCTEUR') %}
+                  <h4>Mes formations</h4>
+                  <button class="connectbtn"><a href="{{ path('app_create_forma_index') }}">Voir mes formations</a></button>
+                  <button class="connectbtn"><a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a></button>
+              {% elseif is_granted('ROLE_USER') %}
+                  <h4>Ma progression</h4>
+                  <div>                  
+                  {% set resultprog = progressions|length * 100 / formations %}
+                  
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ resultprog|round}}%"aria-valuenow="{{ resultprog|round}}" aria-valuemin="0" aria-valuemax="100">{{ resultprog|round}} %</div>
+                  </div>        
+              {% endif %}
+        </div>
+      </div>
+    </div>
+    <aside class="col-4">
+      <div class="row justify-content-center">
+        <img class="col-6" src="{{ asset('assets/ressources/tux.png') }}" alt="">
+      </div>
+      <div class="row justify-content-center connexion">
+        <img class="col-6" src="{{ asset('assets/ressources/pixel.png') }}" alt="">              
+      </div>
+    </aside>
+  </section>
 </main>
 
 {% endblock %}
