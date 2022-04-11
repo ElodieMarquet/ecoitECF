@@ -58,7 +58,7 @@ class FormationController extends AbstractController
             'forma' => $forma,]);
     }
 
-    #[Route('/accueil', name: 'app_index', methods: ['GET'])]
+    #[Route('/', name: 'app_index', methods: ['GET'])]
     public function index(FormationRepository $formationRepository): Response
     {
         
