@@ -209,7 +209,7 @@ img {
   height: 30px;
 }
 .img-profil {
-  width: 10vw;
+  width: 40vw;
 }
 
 /**********footer**********/
@@ -299,5 +299,8 @@ embed {
   aspect-ratio: 16/9;
   width: 50vw;
   height: auto;
+}
+.img-profil {
+  width: 10vw;
 }
 }
