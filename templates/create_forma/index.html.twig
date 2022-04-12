@@ -3,10 +3,10 @@
 {% block title %}Liste des Formations {% endblock %}
 
 {% block body %}
-<main>
+<main class="container">
     <h1>Liste des Formations</h1>
 
-    <table class="table table-bordered">
+    <table class="row table table-bordered">
         <thead class="thead-light">
             <tr class="d-flex">
                 <th class="col-1">Id</th>
@@ -38,6 +38,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a>
+    <button class="connectbtn"><a href="{{ path('app_create_forma_new') }}">Créer une nouvelle formation</a></button>
 </main>
 {% endblock %}

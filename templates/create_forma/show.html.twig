@@ -3,7 +3,7 @@
 {% block title %}Formation{% endblock %}
 
 {% block body %}
-<main>
+<main class="container">
     <h1>Formation</h1>
 
     <table class="table">
@@ -33,7 +33,7 @@
                 <td>{{ formation.video }}</td>
             </tr>
             <tr>
-                <th>Created_at</th>
+                <th>Date création</th>
                 <td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>

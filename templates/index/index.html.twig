@@ -39,29 +39,34 @@
             <h4>Nos dernières formations</h4>
           </div>
         </section>
-        <section class="row justify-content-center">
-        {% for forma in formations %}
-        
-            <div class="card col-4 article-formation">                              
-                    <img class="card-img-top" src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">                    
-                    <div class="body">
-                        <h5 class="card-title">{{ forma.name }}</h5>
-                        <p class="card-text">{{ forma.description }}</p>                    
-                    </div>
-                    <div class="body-section">
-                        <p>Section : {{ forma.section.name}}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="connectbtn">
-                            {% if app.user %}
-                                <a href={{ path ('app_detail', {slug: forma.slug})}} class="button">Lire la suite</a>
-                            {% else %}
-                                <a href={{ path ('app_register') }} class="button">Lire la suite</a>
-                            {% endif %}
-                        </button>
-                    </div>
-                </div>
-                              
+        <section class="row">
+        {% for forma in formations %}        
+          <div class="col-4 g-2 d-flex align-content-stretch flex-wrap">
+              <div class="card article-formation">
+                  <div class="aligncenter">
+                      {% if app.user %}
+                          <a href={{ path ('app_detail', {slug: forma.slug})}}><img class="card-img-top" src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}"></a>
+                      {% else %}
+                          <a href={{ path ('app_detail', {slug: forma.slug})}}><img class="card-img-top" src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}">
+                      {% endif %}                              
+                                          
+                  </div>
+                  <div class="card-body mb-2">
+                      <h5 class="card-title">{{ forma.name }}</h5>
+                      <p class="card-text">{{ forma.description }}</p>                    
+                  </div>
+                  <div class="card-footer d-flex flex-column">
+                      <p class="card-text">Section : {{ forma.section.name}}</p>                            
+                      <button class="connectbtn align-self-end">
+                          {% if app.user %}
+                              <a href={{ path ('app_detail', {slug: forma.slug})}}>Lire la suite</a>
+                          {% else %}
+                              <a href={{ path ('app_register') }} >Lire la suite</a>
+                          {% endif %}
+                      </button>                            
+                  </div>
+              </div>
+          </div>                              
         {% endfor %}
         </section>
       </div>

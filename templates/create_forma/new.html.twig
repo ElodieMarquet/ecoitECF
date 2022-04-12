@@ -7,9 +7,8 @@
     <h1>Créer une nouvelle Formation</h1>
 
     {{ include('create_forma/_form.html.twig') }}
-
-    <button class="connectbtn">
-        <a href="{{ path('app_create_forma_index') }}">Revenir à la liste</a>
-    </button>
+    <div class="connexion">
+        <button class="connectbtn"><a href="{{ path('app_create_forma_index') }}">Revenir à la liste</a></button>
+    </div>
 </main>
 {% endblock %}

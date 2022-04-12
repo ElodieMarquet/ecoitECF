@@ -21,7 +21,7 @@
             <div>Nom : {{app.user.nom}} {{app.user.prenom}}</div>
             <div>Email : {{app.user.email}}</div>
             {% if app.user.photo != null %}
-            <div>Photo : <img class="img-profil" src="{{ asset('upload/photoprofil/') }}{{ app.user.photo }}"></div>
+            <div><img class="img-profil" src="{{ asset('upload/photoprofil/') }}{{ app.user.photo }}"></div>
             {% endif %}
           </div>
         </div>
