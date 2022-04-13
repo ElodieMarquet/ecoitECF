@@ -29,16 +29,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 191, nullable: true)]
     private $prenom;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 191)]
     private $Nom;
 
     #[ORM\OneToMany(mappedBy: 'NomAuteur', targetEntity: Formation::class, orphanRemoval: true)]
     private $formations;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 191, nullable: true)]
     private $photo;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Progression::class)]

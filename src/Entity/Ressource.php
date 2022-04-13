@@ -13,7 +13,7 @@ class Ressource
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 191)]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Formation::class, inversedBy: 'ressources')]

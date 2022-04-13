@@ -26,10 +26,10 @@ class Formation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 191)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 191)]
     private $image;
 
     #[ORM\Column(type: 'string', length: 140)]
@@ -38,7 +38,7 @@ class Formation
     #[ORM\Column(type: 'text')]
     private $contenu;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 191)]
     private $video;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' =>'CURRENT_TIMESTAMP'])]
@@ -51,7 +51,7 @@ class Formation
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Ressource::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $ressources;
 
-    #[ORM\Column(type: 'string', length: 255, unique : true)]
+    #[ORM\Column(type: 'string', length: 191, unique : true)]
     #[Gedmo\Slug(fields: ['name'])]    
     private $slug;
 
