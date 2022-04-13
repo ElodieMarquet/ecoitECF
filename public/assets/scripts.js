@@ -1,6 +1,6 @@
 /*  Event filter for formation in catalogue  */
 
-let elements = document.getElementsByClassName('article-formation')
+let elements = document.getElementsByClassName('arti')
 
 function eventFilterFinish () {
 

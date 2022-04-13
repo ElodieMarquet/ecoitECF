@@ -40,8 +40,8 @@
                     {% set classTermine = true %}
                 {% endif %}
             {% endfor %}
-                <div class="col-md-4 g-2 d-flex align-content-stretch flex-wrap">
-                    <div class="card article-formation {{ classTermine ? 'class-termine' : ''}}">
+                <div class="col-md-4 g-2 align-content-stretch flex-wrap {{ classTermine ? 'class-termine' : ''}} arti">
+                    <div class="card article-formation">
                         <div class="aligncenter">
                             {% if app.user %}
                                 <a href={{ path ('app_detail', {slug: forma.slug})}}><img class="card-img-top" src="{{ asset('upload/images/') }}{{ forma.image }}" alt="{{ forma.name }}"></a>

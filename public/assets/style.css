@@ -121,7 +121,7 @@ label {
   margin-bottom: 30px;
   
 }
-.class-termine {
+.class-termine>.card {
   background-color: rgb(225, 246, 246);
 }
 .filtre {

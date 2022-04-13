@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
@@ -24,7 +25,7 @@ class RegistrationFormType extends AbstractType
             ->add('photo', FileType::class, [
                 'label' => 'Photo de profil au format jpeg ou png',
                 'mapped' =>false,
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
@@ -61,6 +62,11 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
+                    new Regex([
+                        'pattern' => "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
+                        'match'=> true,
+                        'message'=>'Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole.'
+                    ])
                 ],
                 'label' => 'Mot de passe'
             ])
