@@ -1,0 +1,1 @@
+INSERT INTO user VALUES (0, 'ecoitgestion@gmail.com', '[\"ROLE_SUPER_ADMIN"\]', '$2y$10$.2Q4UGSpG4nvJdJZfqBNS.PHAzm7HIPLVYLDFuMfgEeuhHxbwaQHG', 'Laure', 'Dupont', null)
