@@ -1,3 +1,5 @@
+WARNING : erreur sur la copie d'ECF pour le lien Heroku, le bon lien est  https://ecoit-ecf2022.herokuapp.com/
+
 installation en local :
 Ce projet est réalisé à partir de symfony 6 qui nécessite au minimum la version 8 de PHP. Assurer vous au préalable de mettre à jour votre version de PHP ou de l'installer. Pour le récupérer le projet, effecutez les commandes suivantes (dans votre console, en vous plaçant sur le dossier de travail dans lequel vous voulez importer le projet, et en prenant soin d'installer git sur votre ordinateur)
 
