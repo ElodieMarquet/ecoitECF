@@ -163,6 +163,7 @@ label {
 .container {
   margin-left: 5vw;
   margin-right: 5vw;
+  max-width: 90%;
 }
 
 .article-formation {
@@ -216,7 +217,8 @@ img {
 
 .retour {
   text-align: right;
-  margin-right: 20px;  
+  margin-right: 20px;
+  margin-top: 20px;  
 }
 .retour a{
   color:  #347273;
